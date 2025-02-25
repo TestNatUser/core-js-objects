@@ -49,8 +49,9 @@ function mergeObjects(/* objects */) {
  *    removeProperties({name: 'John', age: 30, city: 'New York'}, ['age']) => {name: 'John', city: 'New York'}
  *
  */
-function removeProperties(/* obj, keys */) {
-  throw new Error('Not implemented');
+function removeProperties(obj, keys) {
+  const entries = Object.entries(obj).filter(([el]) => !keys.includes(el));
+  return Object.fromEntries(entries);
 }
 
 /**
@@ -81,7 +82,7 @@ function compareObjects(/* obj1, obj2 */) {
  *    isEmptyObject({a: 1}) => false
  */
 function isEmptyObject(obj) {
-  return Object.getOwnPropertyNames(obj).length === 0;
+  return Object.keys(obj).length === 0;
 }
 
 /**
@@ -101,7 +102,7 @@ function isEmptyObject(obj) {
  *    console.log(immutableObj) => {a: 1, b: 2}
  */
 function makeImmutable(obj) {
-  return Object.seal(obj);
+  return Object.freeze(obj);
 }
 
 /**
