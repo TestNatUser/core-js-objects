@@ -75,10 +75,7 @@ function removeProperties(obj, keys) {
  *    compareObjects({a: 1, b: 2}, {a: 1, b: 3}) => false
  */
 function compareObjects(obj1, obj2) {
-  return (
-    Object.keys(obj1) === Object.keys(obj2) &&
-    Object.values(obj1) === Object.values(obj2)
-  );
+  return JSON.stringify(obj1) === JSON.stringify(obj2);
 }
 
 /**
