@@ -18,7 +18,7 @@
  *    shallowCopy({}) => {}
  */
 function shallowCopy(obj) {
-  return Object.create(obj);
+  return { ...obj };
 }
 
 /**
@@ -318,32 +318,32 @@ function group(/* array, keySelector, valueSelector */) {
  */
 
 const cssSelectorBuilder = {
-  element(/* value */) {
-    throw new Error('Not implemented');
+  element(value) {
+    return JSON.stringify(`${value}`);
   },
 
-  id(/* value */) {
-    throw new Error('Not implemented');
+  id(value) {
+    return `#${value}`;
   },
 
-  class(/* value */) {
-    throw new Error('Not implemented');
+  class(value) {
+    return `.${value}`;
   },
 
-  attr(/* value */) {
-    throw new Error('Not implemented');
+  attr(value) {
+    return `[${value}]`;
   },
 
-  pseudoClass(/* value */) {
-    throw new Error('Not implemented');
+  pseudoClass(value) {
+    return `:${value}`;
   },
 
-  pseudoElement(/* value */) {
-    throw new Error('Not implemented');
+  pseudoElement(value) {
+    return `::${value}`;
   },
 
-  combine(/* selector1, combinator, selector2 */) {
-    throw new Error('Not implemented');
+  combine(selector1, combinator, selector2) {
+    return `${selector1}+${combinator}+${selector2}`;
   },
 };
 
