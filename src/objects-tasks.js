@@ -193,8 +193,10 @@ function getJSON(obj) {
  *    const r = fromJSON(Circle.prototype, '{"radius":10}');
  *
  */
-function fromJSON(/* proto, json */) {
-  throw new Error('Not implemented');
+function fromJSON(proto, json) {
+  const obj = JSON.parse(json);
+  Object.setPrototypeOf(obj, proto);
+  return obj;
 }
 
 /**
@@ -259,8 +261,16 @@ function sortCitiesArray(arr) {
  *    "Poland" => ["Lodz"]
  *   }
  */
-function group(/* array, keySelector, valueSelector */) {
-  throw new Error('Not implemented');
+function group(array, keySelector, valueSelector) {
+  const obj = Object.groupBy(array, keySelector);
+  const o = {};
+  for (const country in obj) {
+    if (Object.hasOwn(obj, country)) {
+      const arr = obj[country].map(valueSelector);
+      o[country] = arr;
+    }
+  }
+  return o;
 }
 
 /**
