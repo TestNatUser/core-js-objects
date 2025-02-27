@@ -264,13 +264,13 @@ function sortCitiesArray(arr) {
 function group(array, keySelector, valueSelector) {
   const obj = Object.groupBy(array, keySelector);
   const o = {};
-  for (const country in obj) {
-    if (Object.hasOwn(obj, country)) {
-      const arr = obj[country].map(valueSelector);
-      o[country] = arr;
-    }
+  const keys = Object.keys(obj);
+  for (let i = 0; i < keys.length; i += 1) {
+    const country = keys[i];
+    const arr = obj[country].map(valueSelector);
+    o[country] = arr;
   }
-  return o;
+  return new Map(Object.entries(o));
 }
 
 /**
