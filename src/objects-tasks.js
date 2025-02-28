@@ -59,8 +59,9 @@ function mergeObjects(objects) {
  *
  */
 function removeProperties(obj, keys) {
-  const entries = Object.entries(obj).filter(([el]) => !keys.includes(el));
-  return Object.fromEntries(entries);
+  const copy = { ...obj };
+  keys.map((el) => delete copy[el]);
+  return copy;
 }
 
 /**
