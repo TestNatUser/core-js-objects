@@ -35,7 +35,7 @@ function shallowCopy(obj) {
  */
 function mergeObjects(objects) {
   const newObj = Object.assign({}, ...objects);
-  Object.keys(newObj).forEach((el) => {
+  Object.entries(newObj).forEach(([el]) => {
     let sum = 0;
     for (let i = 0; i < objects.length; i += 1) {
       sum += objects[i][el] === undefined ? 0 : objects[i][el];
