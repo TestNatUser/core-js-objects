@@ -278,15 +278,15 @@ function sortCitiesArray(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-  const obj = Object.groupBy(array, keySelector);
-  const o = {};
-  const keys = Object.keys(obj);
-  for (let i = 0; i < keys.length; i += 1) {
-    const country = keys[i];
-    const arr = obj[country].map(valueSelector);
-    o[country] = arr;
-  }
-  return new Map(Object.entries(o));
+  return array.reduce((map, item) => {
+    const key = keySelector(item);
+    const value = valueSelector(item);
+    if (!map.has(key)) {
+      map.set(key, []);
+    }
+    map.get(key).push(value);
+    return map;
+  }, new Map());
 }
 
 /**
